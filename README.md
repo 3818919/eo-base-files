@@ -1,8 +1,8 @@
 # EO Quests + Maps
 
-EO+ quest scripts (2015)
-EO Clone maps (2022) with bug fixes
-EO Shop/drop data files (2015)
+- EO+ quest scripts (2015)
+- EO Clone maps (2022) with bug fixes
+- EO Shop/drop data files (2015)
 
 A preserved and enhanced collection of Endless Online content. The files are distributed here with permission from the author, Vult-r.
 
