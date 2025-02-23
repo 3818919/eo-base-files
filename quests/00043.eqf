@@ -12,35 +12,37 @@ Main
 
 state Begin
 {
-	desc		"Talk Steve snake hunter, Aeven."
-	action		AddNpcText( 43 , "The rattles of large snakes could harbor the secrets of an antidote." );
+	desc		"Talk Steve snake hunter, Aeven"
+	action		AddNpcText(43, "The rattles of large snakes could harbor the secrets of an antidote.");
 
-	rule 		TalkedToNpc( 43 ) goto Begin2
+	rule 		TalkedToNpc(43) goto Begin2
 }
 
 state Begin2
 {
 	desc		"Collect 10 snake rattles"
-	action		ShowHint("Quest reward : 1500 EXP")
-	action		AddNpcText( 43 , "Please bring me 10 snake rattles and i will reward you with scientific knowledge!" );
 
-	action		AddNpcInput( 43 , 1 , "Forget it");
-	action		AddNpcInput( 43 , 2 , "Im working on it!");
+	action		ShowHint("Quest reward : 1500 EXP");
+	action		AddNpcText(43, "Please bring me 10 snake rattles and i will reward you with scientific knowledge!");
 
-	rule		DoneDaily( 1 ) goto EndWithoutReset // once a day ( 1 )
-	rule 		InputNpc( 1 ) goto Reset
-	rule 		GotItems( 254 , 10 ) goto Talk2
+	action		AddNpcInput(43, 1, "Forget it");
+	action		AddNpcInput(43, 2, "Im working on it!");
+
+	rule		DoneDaily(1) goto EndWithoutReset // once a day (1)
+	rule 		GotItems(254, 10) goto Talk2
+	rule 		InputNpc(1) goto Reset
 }
 
 state Talk2
 {
-	desc		"Talk Steve snake hunter, Aeven."
-	action		ShowHint("You succesfully collected 10 snake rattles horns")
-	action		AddNpcChat( 43 , "Snake Rattles!" );
-	action		AddNpcText( 43 , "Thanks for collecting all those snake rattles for me, i will be studying them shortly!" );
+	desc		"Talk Steve snake hunter, Aeven"
 
-	rule 		TalkedToNpc( 43 ) goto GetReward
-	rule		LostItems( 254 , 10 ) goto Begin2
+	action		ShowHint("You succesfully collected 10 snake rattles");
+	action		AddNpcChat(43, "Snake Rattles!");
+	action		AddNpcText(43, "Thanks for collecting all those snake rattles for me, i will be studying them shortly!");
+
+	rule 		TalkedToNpc(43) goto GetReward
+	rule		LostItems(254, 10) goto Begin2
 
 }
 
@@ -49,8 +51,8 @@ state GetReward
 	action		ShowHint("You gained 1500 EXP (DAILY)");
 	action		PlaySound(17);
 
-	action		RemoveItem( 254 , 10 )
-	action		GiveExp(1500)
+	action		RemoveItem(254, 10);
+	action		GiveExp(1500);
 	action		ResetDaily();
 }
 
@@ -58,13 +60,13 @@ state EndWithoutReset
 {
 	desc		"Talk Steve snake hunter, Aeven."
 	action		ShowHint("You can only complete this quest once a day.");
-	action		AddNpcText( 43 , "You already delivered me some rattles and I am going to study them very soon, thank you so much for your aid to science!" );
-	action		AddNpcText( 43 , "[ you cannot complete this quest today , please come back tomorrow ]" );
-	rule 		TalkedToNpc( 43 ) goto Reset
+	action		AddNpcText(43, "You already delivered me some rattles and I am going to study them very soon, thank you so much for your aid to science!");
+	action		AddNpcText(43, "[ you cannot complete this quest today, please come back tomorrow ]");
+	rule 		TalkedToNpc(43) goto Reset
 }
 
 state Reset
 {
-	action		ShowHint("Snake Antidote quest aborted..")
+	action		ShowHint("Snake Antidote quest aborted..");
 	action		Reset();
 }	

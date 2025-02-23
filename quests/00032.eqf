@@ -12,41 +12,47 @@ Main
 
 state Begin
 {
-	desc		"Talk to little Eddy."
-	action		AddNpcText( 32 , "Boohoo i lost little piggy, my favorite toy!" );
-	action		AddNpcText( 32 , "During visiting my aunty Cyndi in the village i lost it, and i can't find it back!" );
+	desc		"Talk to little Eddy"
 
-	rule 		TalkedToNpc( 32 ) goto Begin2
-	rule		EnterMap( 1 ) goto Reset
-	rule		EnterMap( 5 ) goto Reset
+	action		AddNpcText(32, "Boohoo! I lost little piggy, my favorite toy!");
+	action		AddNpcText(32, "During visiting my aunty Cyndi in the village i lost it, and i can't find it back!");
+
+	rule 		TalkedToNpc(32) goto Begin2
+	rule		EnterMap(1) goto Reset
+	rule		EnterMap(5) goto Reset
 }
 
 state Begin2
 {
 	desc		"Collect little piggy"
-	action		ShowHint("Quest reward : 400 EXP")
-	action		AddNpcText( 32 , "Could you find little piggy for me?" );
 
-	action		AddNpcInput( 32 , 1 , "No thanks");
-	action		AddNpcInput( 32 , 2 , "Sure");
+	action		ShowHint("Quest reward : 400 EXP and 5 health potions");
 
-	rule 		InputNpc( 1 ) goto Reset
-	rule 		GotItems( 483 , 1 ) goto Talk2
-	rule		EnterMap( 1 ) goto Reset
-	rule		EnterMap( 5 ) goto Reset
+	action		AddNpcText(32, "Could you find little piggy for me?");
+
+	action		AddNpcInput(32, 1, "Sure");
+	action		AddNpcInput(32, 2, "No thanks");
+	
+
+	rule 		GotItems(483, 1) goto Talk2
+	rule 		InputNpc(2) goto Reset
+	rule		EnterMap(1) goto Reset
+	rule		EnterMap(5) goto Reset
 }
 
 state Talk2
 {
-	desc		"Talk to little Eddy."
-	action		ShowHint("You succesfully collected 10 blob slime")
-	action		AddNpcChat( 32 , "Yeeee!" );
-	action		AddNpcText( 32 , "You found it! You find little piggy! As promised, please take this reward!" );
+	desc		"Talk to little Eddy"
 
-	rule 		TalkedToNpc( 32 ) goto GetReward
-	rule		LostItems( 483 , 1 ) goto Begin2
-	rule		EnterMap( 1 ) goto Reset
-	rule		EnterMap( 5 ) goto Reset
+	action		ShowHint("You have found Eddie's Piggy! Return to little Eddy");
+
+	action		AddNpcChat(32, "Yeeee!");
+	action		AddNpcText(32, "You found it! You find little piggy! As promised, please take this reward!");
+
+	rule 		TalkedToNpc(32) goto GetReward
+	rule		LostItems(483, 1) goto Begin2
+	rule		EnterMap(1) goto Reset
+	rule		EnterMap(5) goto Reset
 
 }
 
@@ -55,14 +61,14 @@ state GetReward
 	action		ShowHint("You gained 400 EXP and 5 health potions.");
 	action		PlaySound(17);
 
-	action		RemoveItem( 483 , 1 )
-	action		GiveItem( 2 , 5)
-	action		GiveExp(400)
+	action		RemoveItem(483, 1);
+	action		GiveItem(2, 5);
+	action		GiveExp(400);
 	action		End();
 }
 
 state Reset
 {
-	action		ShowHint("Little piggy quest aborted..")
-	action		Reset()
+	action		ShowHint("Little piggy quest aborted..");
+	action		Reset();
 }	
