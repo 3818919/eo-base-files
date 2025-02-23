@@ -1,8 +1,10 @@
 # EO Quests + Maps
 
-EO+ quest scripts (2015) + EO Clone maps (2022) with bug fixes - A preserved and enhanced collection of Endless Online content.
+EO+ quest scripts (2015)
+EO Clone maps (2022) with bug fixes
+EO Shop/drop data files (2015)
 
-The files are distributed here with permission from the author, Vult-r.
+A preserved and enhanced collection of Endless Online content. The files are distributed here with permission from the author, Vult-r.
 
 ## Quest Changes
 
@@ -29,6 +31,10 @@ The files are distributed here with permission from the author, Vult-r.
 - Fixed visual bugs (dirt paths, cave walls, shadows, chests)
 - Fixed spec tiles (walls & edges on objects, walls, water, void)
 - Fixed beach cabin map warp (set map to 297)
+
+## Data Files
+- Shops.ini (2015)
+- Drops.ini (2015)
 
 ## License
 
